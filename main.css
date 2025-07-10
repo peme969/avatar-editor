@@ -1,0 +1,58 @@
+html{
+  background-image: linear-gradient(90deg, #cf5c5c, #c19b4a, #def2a0, #c6ee4a, #42eca6, #64b3d9, #208ea2, #498ada, #5b73df, #897ed3, #cf5c5c, #c19b4a);
+  background-size: 1100% 100%;
+  animation: animateBg 11s linear infinite;
+}
+
+@keyframes animateBg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+.preview-box{
+  border: 5px solid darkblue;
+  max-height: 100vh; 
+  overflow: auto;  }
+  
+
+
+
+
+.avatar {
+  position: relative;
+}
+
+
+
+
+.hat {
+  z-index: 2;
+}
+
+.body, .clothes,  {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.hat {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.clothes {
+    position: absolute;
+    top: 1;
+    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+
+.clothes {
+  z-index: 1;
+}
+
+
+.hat {
+  z-index: 2;
+}

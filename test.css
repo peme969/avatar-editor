@@ -1,0 +1,564 @@
+p{
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 50px;
+}
+h1{
+  font-family: "Outfit";
+  text-align: center;
+}
+
+hr{
+  border-bottom: 5px solid darkblue;
+}
+html{
+  background-image: linear-gradient(90deg, #cf5c5c, #c19b4a, #def2a0, #c6ee4a, #42eca6, #64b3d9, #208ea2, #498ada, #5b73df, #897ed3, #cf5c5c, #c19b4a);
+  background-size: 1100% 100%;
+  animation: animateBg 11s linear infinite;
+}
+
+@keyframes animateBg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+.preview-box{
+  border: 5px solid darkblue;
+}
+#box1{
+  background-color: lightblue;
+  border-radius: 5px;
+  height: 800px;
+  width: 400px;
+  position: relative;
+  bottom: 0;
+  left: 1300px;
+  box-shadow: 0px 0px 50px lightblue;
+}
+#box2{
+  background-color: lightcoral;
+  border-radius: 5px;
+  height: 1200px;
+  width: 1000px;
+  position: relative;
+  bottom: 810;
+  left: 100;
+  box-shadow: 0px 0px 500px lightcoral;
+  overflow: scroll down;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  height: min-content;
+  
+}
+
+.face_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  font-family: "Outfit";
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.face_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.face_cate:main,
+.face_cate:focus {
+  user-select: auto;
+  font-family: "Outfit";
+}
+
+.face_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+  font-family: "Outfit";
+}
+
+.face_cate:disabled {
+  cursor: auto;
+  font-family: "Outfit";
+}
+
+.face_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+  font-family: "Outfit";
+}
+.face{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+.faces-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+.body{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+.bodys-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+.clothing{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+.clothings-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+.hat{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+.hats-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+.hair{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+.hairs-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+
+
+.neck{
+  border: 5px solid darkblue;
+  background-color: lightyellow;
+  border-radius: 20px;
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  display: block;
+}
+
+.necks-img{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-family: "Outfit";
+  display: block;
+  
+}
+
+
+    .body_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.body_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.body_cate:main,
+.body_cate:focus {
+  user-select: auto;
+}
+
+.body_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.body_cate:disabled {
+  cursor: auto;
+}
+
+.body_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+    
+    .hat_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.hat_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.hat_cate:main,
+.hat_cate:focus {
+  user-select: auto;
+}
+
+.hat_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.hat_cate:disabled {
+  cursor: auto;
+}
+
+.hat_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+    
+    .hair_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.hair_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.hair_cate:main,
+.hair_cate:focus {
+  user-select: auto;
+}
+
+.hair_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.hair_cate:disabled {
+  cursor: auto;
+}
+
+.hair_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+    
+    .clothing_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.clothing_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.clothing_cate:main,
+.clothing_cate:focus {
+  user-select: auto;
+}
+
+.clothing_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.clothing_cate:disabled {
+  cursor: auto;
+}
+
+.clothing_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+    
+    .neck_cate {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  font-family: "Outfit";
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.neck_cate:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  font-family: "Outfit";
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.neck_cate:main,
+.neck_cate:focus {
+  user-select: auto;
+}
+
+.neck_cate:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.neck_cate:disabled {
+  cursor: auto;
+}
+
+.neck_cate:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+
+
+
+
