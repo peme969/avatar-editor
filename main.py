@@ -1,71 +1,61 @@
-code = ""
-name = ['body_cate', 'hat_cate', 'hair_cate', 'clothing_cate', 'neck_cate']
-for names in name:
-    code += f"""
-    .{names} {{
-  appearance: button;
-  background-color: #1899D6;
-  border: solid transparent;
-  border-radius: 16px;
-  border-width: 0 0 4px;
-  box-sizing: border-box;
-  font-family: "Outfit";
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 27px;
-  font-weight: 700;
-  letter-spacing: .8px;
-  line-height: 20px;
-  margin: 0;
-  outline: none;
-  overflow: visible;
-  padding: 13px 16px;
-  text-align: center;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  transform: translateZ(0);
-  transition: filter .2s;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 100%;
-}}
+import sqlite3
+import re
 
-.{names}:after {{
-  background-clip: padding-box;
-  background-color: #1CB0F6;
-  border: solid transparent;
-  border-radius: 16px;
-  border-width: 0 0 4px;
-  font-family: "Outfit";
-  bottom: -4px;
-  content: "";
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: -1;
-}}
+DB_FILE = "avatar_shop.db"
+INDEX_FILE = "index.html"
 
-.{names}:main,
-.{names}:focus {{
-  user-select: auto;
-}}
+def generate_html(allowed_categories=None):
+    conn = sqlite3.connect(DB_FILE)
+    c = conn.cursor()
 
-.{names}:hover:not(:disabled) {{
-  filter: brightness(1.1);
-  -webkit-filter: brightness(1.1);
-}}
+    if allowed_categories:
+        placeholders = ",".join("?" * len(allowed_categories))
+        allowed = [cat.lower() for cat in allowed_categories]
 
-.{names}:disabled {{
-  cursor: auto;
-}}
+        query = f"""
+            SELECT category, displayName, image
+            FROM items
+            WHERE LOWER(category) IN ({placeholders})
+            ORDER BY category, displayName
+        """
+        c.execute(query, allowed)
+    else:
+        query = "SELECT category, displayName, image FROM items ORDER BY category, displayName"
+        c.execute(query)
 
-.{names}:active {{
-  border-width: 4px 0 0;
-  background: none;
-}}
-    """
-print(code)
+    rows = c.fetchall()
+    conn.close()
+
+    html = ""
+    for category, displayName, image in rows:
+        cat_class = category.lower()
+        html += f'''
+        <div class="item {cat_class}">
+          <img class="item-img" src="{image}">
+          <span class="item-description">{displayName}</span>
+        </div>
+'''
+    return html.strip()
+
+
+def update_index_html(new_items_html):
+    with open(INDEX_FILE, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    # Replace contents inside <div class="items">...</div>
+    updated_html = re.sub(
+        r'(<div class="items">)(.*?)(</div>)',
+        lambda m: f'{m.group(1)}\n{new_items_html}\n{m.group(3)}',
+        html,
+        flags=re.DOTALL
+    )
+
+    with open(INDEX_FILE, "w", encoding="utf-8") as f:
+        f.write(updated_html)
+
+    print(f"index.html updated with new avatar items.")
+
+if __name__ == "__main__":
+    allowed_categories = ['body', 'hair', 'clothing', 'hat', 'face', 'neck']  # Skipping 'title'
+    html_output = generate_html(allowed_categories=allowed_categories)
+    update_index_html(html_output)
