@@ -1,61 +1,52 @@
 import sqlite3
-import re
+import os
+import requests
+from urllib.parse import urlparse
 
-DB_FILE = "avatar_shop.db"
-INDEX_FILE = "index.html"
+# === CONFIG ===
+DB_PATH = "items.db"            # Path to your SQLite DB
+TABLE_NAME = "items"            # Replace with your actual table name
+COLUMN_NAME = "image_url"       # Column containing the image URLs
+IMAGE_DIR = "images"            # Folder to save images
 
-def generate_html(allowed_categories=None):
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
+# === CREATE IMAGE FOLDER ===
+os.makedirs(IMAGE_DIR, exist_ok=True)
 
-    if allowed_categories:
-        placeholders = ",".join("?" * len(allowed_categories))
-        allowed = [cat.lower() for cat in allowed_categories]
+# === CONNECT TO DATABASE ===
+conn = sqlite3.connect(DB_PATH)
+cursor = conn.cursor()
 
-        query = f"""
-            SELECT category, displayName, image
-            FROM items
-            WHERE LOWER(category) IN ({placeholders})
-            ORDER BY category, displayName
-        """
-        c.execute(query, allowed)
-    else:
-        query = "SELECT category, displayName, image FROM items ORDER BY category, displayName"
-        c.execute(query)
-
-    rows = c.fetchall()
+# === GET IMAGE URLS ===
+try:
+    cursor.execute(f"SELECT {COLUMN_NAME} FROM {TABLE_NAME}")
+    rows = cursor.fetchall()
+except sqlite3.OperationalError as e:
+    print(f"Database error: {e}")
     conn.close()
+    exit()
 
-    html = ""
-    for category, displayName, image in rows:
-        cat_class = category.lower()
-        html += f'''
-        <div class="item {cat_class}">
-          <img class="item-img" src="{image}">
-          <span class="item-description">{displayName}</span>
-        </div>
-'''
-    return html.strip()
+# === DOWNLOAD IMAGES ===
+for row in rows:
+    image_url = row[0]
+    if not image_url:
+        continue
 
+    try:
+        # Extract filename from URL
+        filename = os.path.basename(urlparse(image_url).path)
+        filepath = os.path.join(IMAGE_DIR, filename)
 
-def update_index_html(new_items_html):
-    with open(INDEX_FILE, "r", encoding="utf-8") as f:
-        html = f.read()
+        # Download image
+        response = requests.get(image_url, timeout=10)
+        response.raise_for_status()
 
-    # Replace contents inside <div class="items">...</div>
-    updated_html = re.sub(
-        r'(<div class="items">)(.*?)(</div>)',
-        lambda m: f'{m.group(1)}\n{new_items_html}\n{m.group(3)}',
-        html,
-        flags=re.DOTALL
-    )
+        # Save image
+        with open(filepath, "wb") as f:
+            f.write(response.content)
+        print(f"Downloaded: {filename}")
 
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        f.write(updated_html)
+    except Exception as e:
+        print(f"Failed to download {image_url}: {e}")
 
-    print(f"index.html updated with new avatar items.")
-
-if __name__ == "__main__":
-    allowed_categories = ['body', 'hair', 'clothing', 'hat', 'face', 'neck']  # Skipping 'title'
-    html_output = generate_html(allowed_categories=allowed_categories)
-    update_index_html(html_output)
+# === CLEAN UP ===
+conn.close()
