@@ -1,3 +1,7 @@
+
+
+# Avatar Editor
+
 A lightweight, browser-based avatar editor with a scrollable item inventory, layered preview, dark/light theme toggle, “random” selection per category, and live price tally based on selected items.
 
 **🔗 Live Demo:** [avatar.peme969.dev](https://avatar.peme969.dev/)
