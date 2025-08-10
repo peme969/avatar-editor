@@ -2,10 +2,11 @@
 
 # Avatar Editor
 
+_A collaborative project by **[Peme969](https://github.com/peme969) x [Z!](https://github.com/zmushtare)**_
+
 A lightweight, browser-based avatar editor with a scrollable item inventory, layered preview, dark/light theme toggle, “random” selection per category, and live price tally based on selected items.
 
-**🔗 Live Demo:** [avatar.peme969.dev](https://avatar.peme969.dev/)
-**📂 GitHub Repo:** [github.com/peme969/avatar-editor](https://github.com/peme969/avatar-editor)
+## **🔗 Live Demo:** [avatar.peme969.dev](https://avatar.peme969.dev/)
 
 ---
 
