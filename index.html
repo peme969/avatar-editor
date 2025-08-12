@@ -9876,6 +9876,7 @@
             <img id="face" />
             <img id="hat" />
         </div>
+        <button id="download-avatar">Download Avatar</button>
         <div class="price">
             Your avatar would cost <span class="avatar-price">0</span> coins
         </div>
@@ -9897,6 +9898,89 @@
                         );
                     });
             });
+        </script>
+        <script>
+            /**
+             * Compose the avatar's stacked <img> layers onto a canvas and download as PNG.
+             * Works best when the image hosts send CORS headers (e.g., raw.githubusercontent.com).
+             */
+            document
+                .getElementById("download-avatar")
+                .addEventListener("click", async () => {
+                    const container = document.querySelector(".avatar");
+                    if (!container) return alert("Avatar preview not found.");
+
+                    const rect = container.getBoundingClientRect();
+                    const scale = window.devicePixelRatio || 1;
+
+                    // Prepare canvas (HD export using device pixel ratio)
+                    const canvas = document.createElement("canvas");
+                    canvas.width = Math.round(rect.width * scale);
+                    canvas.height = Math.round(rect.height * scale);
+                    const ctx = canvas.getContext("2d");
+
+                    // OPTIONAL: solid background instead of transparent
+                    // ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--card") || "#fff";
+                    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    // Collect visible <img> layers in DOM order (bottom -> top)
+                    const layers = [
+                        ...container.querySelectorAll("img"),
+                    ].filter((img) => {
+                        const cs = getComputedStyle(img);
+                        return (
+                            cs.display !== "none" &&
+                            cs.visibility !== "hidden" &&
+                            img.src
+                        );
+                    });
+
+                    // Helper to load an image with CORS enabled
+                    function loadImage(src) {
+                        return new Promise((resolve, reject) => {
+                            const im = new Image();
+                            // Allow cross-origin drawing when host supports CORS
+                            im.crossOrigin = "anonymous";
+                            im.onload = () => resolve(im);
+                            im.onerror = reject;
+                            im.src = src;
+                        });
+                    }
+
+                    try {
+                        // Load each layer (sequential draw keeps stacking order)
+                        for (const el of layers) {
+                            const img = await loadImage(el.src);
+                            ctx.drawImage(
+                                img,
+                                0,
+                                0,
+                                canvas.width,
+                                canvas.height,
+                            );
+                        }
+
+                        // Download via blob (safer than toDataURL for large images)
+                        canvas.toBlob((blob) => {
+                            if (!blob)
+                                return alert("Failed to create image blob.");
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = "my-avatar.png";
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                            URL.revokeObjectURL(url);
+                        }, "image/png");
+                    } catch (err) {
+                        console.error(err);
+                        alert(
+                            "Couldn’t export one or more layers. Some image hosts may block canvas export without CORS. " +
+                                "Try different items or host your images on a domain that sends Access-Control-Allow-Origin: *.",
+                        );
+                    }
+                });
         </script>
     </body>
 </html>
