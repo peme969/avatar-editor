@@ -233,8 +233,9 @@ body {
     top: calc(50vh + 15vw);
 }
 #download-avatar {
+    margin-bottom: 10px;
     position: fixed;
-    top: calc(50vh + 16vw);
+    top: calc(40vh + 16vw);
     left: 62.5vw;
     width: 30vw;
     padding: 12px;
@@ -251,4 +252,49 @@ body {
 #download-avatar:hover {
     background-color: var(--btn-hover);
     color: var(--accent);
+}
+.price {
+    position: absolute;
+    padding: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    left: 62.5vw;
+    top: calc(50vh + 15vw);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background-color: var(--btn-bg);
+    width: 28.4vw;
+    margin-top: 10px;
+}
+#download-avatar {
+    top: calc(30vh + 16vw);
+}
+
+/* Medium screens (600px to 1299px) */
+@media (min-width: 600px) and (max-width: 1299px) {
+    #download-avatar {
+        top: calc(46vh + 16vw);
+    }
+}
+
+/* Large screens (1300px and above) */
+@media (min-width: 1300px) {
+    #download-avatar {
+        top: calc(55vh + 16vw);
+    }
+}
+#download-avatar {
+    position: relative;
+    top: calc(55vh + 16vw);
+    left: 62.5vw;
+    width: 30vw;
+    padding: 12px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
 }
