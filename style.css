@@ -267,6 +267,22 @@ body {
     margin-top: 10px;
 }
 #download-avatar {
+    position: relative;
+    top: calc(55vh + 16vw);
+    left: 62.5vw;
+    width: 30vw;
+    padding: 12px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+#download-avatar {
     top: calc(30vh + 16vw);
 }
 
@@ -282,19 +298,4 @@ body {
     #download-avatar {
         top: calc(55vh + 16vw);
     }
-}
-#download-avatar {
-    position: relative;
-    top: calc(55vh + 16vw);
-    left: 62.5vw;
-    width: 30vw;
-    padding: 12px;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s ease;
 }
