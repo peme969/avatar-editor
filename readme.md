@@ -2,66 +2,61 @@
 
 # Avatar Editor
 
-_A collaborative project by **[Peme969](https://github.com/peme969) x [Z!](https://github.com/zmushtare)**_
+_A project by **[Peme969](https://github.com/peme969)** and **[Z!](https://github.com/zmushtare)**_
 
-A lightweight, browser-based avatar editor with a scrollable item inventory, layered preview, dark/light theme toggle, "random" selection per category, and live price tally based on selected items.
+This is a browser-based avatar editor. It has a scrollable item list, layered preview, theme toggle, per-category random selection, and a live price display for the chosen items.
 
-## **Live Demo:** [avatar.peme969.dev](https://avatar.peme969.dev/)
+**Live Demo:** [avatar.peme969.dev](https://avatar.peme969.dev/)
 
 ---
 
 ## Features
 
-- **Layered avatar preview** - body, clothing, neck, hair, background, nose/mouth, eyes, face, hat.
-- **Category sidebar** - filter items by type.
-- **Item cards** - display image, label, XP, and coin cost in a scrollable grid.
-- **Randomizer per category** - picks a random item in the active category.
-- **Live price calculation** - updates as you choose items.
-- **Dark / Light theme toggle** - preference saved in `localStorage`.
-- **Responsive layout** - works on both desktop and mobile screens.
-- **CSS variables** for quick theme customization.
+- Layered avatar preview: body, clothing, neck, hair, background, nose/mouth, eyes, face, hat.
+- Sidebar with category buttons to filter items.
+- Item cards show an image, name, XP, and coin cost.
+- Random button in each category to select a random item.
+- Live total cost display that updates when you pick items.
+- Dark and light themes with preference saved in `localStorage`.
+- Layout works on both desktop and mobile screens.
+- CSS variables for theme customization.
 
 ---
 
-## Upcoming Features
+## Planned Additions
 
-- **Save & Load Avatars** - export your creation as a JSON or image and reload it later.
-- **Custom Image Uploads** - allow users to add their own layers.
-- **Multiple Avatar Slots** - switch between different saved designs instantly.
-- **Drag-and-Drop Layer Reordering** - change stacking order without editing code.
-- **Expanded Item Library** - more backgrounds, clothing, and accessories.
-
----
-
-## Demo
-
-![Randomizer Demo](coming soon!)
+- Save and load avatars as JSON or an image.
+- Allow users to upload custom images for layers.
+- Multiple saved avatar slots.
+- Drag-and-drop to reorder layers.
+- More backgrounds, clothing, and accessories.
 
 ---
 
 ## How It Works
 
-- **HTML Structure**
-  - Inventory with `.item` cards for each avatar part.
-  - Avatar preview with stacked `<img>` layers.
-  - Dynamic price display below the preview.
+**HTML**
+- `.item` cards for each avatar part.
+- Stacked `<img>` layers for the preview.
+- Total coin display below the preview.
 
-- **CSS Styling**
-  - Scrollable inventory grid on the left, fixed avatar preview on the right.
-  - Light/dark themes using CSS variables and a `.dark` class.
+**CSS**
+- Scrollable inventory grid on the left.
+- Fixed avatar preview on the right.
+- Light and dark themes controlled by CSS variables and a `.dark` class.
 
-- **JavaScript Behavior**
-  - Click handlers update avatar layers.
-  - Randomizer for each category.
-  - Total coin calculation after each change.
-  - Category filter buttons.
-  - Theme toggle saved in `localStorage`.
+**JavaScript**
+- Click events update avatar layers.
+- Randomizer picks an item in the current category.
+- Updates total cost after each change.
+- Category filter buttons change the displayed items.
+- Theme toggle saves preference in `localStorage`.
 
 ---
 
 ## Adding Items
 
-Each item is a `.item` card:
+Example `.item` card:
 
 ```html
 <div class="item eyes">
